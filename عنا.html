@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لمحة عني - مطور تطبيقات أندرويد</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden; /* لمنع التمرير الأفقي */
+        }
+
+        /* شريط التنقل الجانبي */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px; /* مخفي بشكل افتراضي */
+            background-color: #FF8C00; /* لون برتقالي داكن */
+            color: white;
+            transition: left 0.3s ease;
+            padding-top: 60px;
+            overflow-y: auto; /* للسماح بالتمرير العمودي إذا كان المحتوى أطول من الشاشة */
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #FFA500; /* لون برتقالي أفتح عند التمرير */
+        }
+
+        /* زر فتح الشريط الجانبي */
+        .openbtn {
+            font-size: 24px;
+            cursor: pointer;
+            background: #FF8C00; /* اللون البرتقالي الداكن */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1; /* تأكد من أن الزر يظهر فوق العناصر الأخرى */
+        }
+
+        /* الرأس */
+        header {
+            background: #FFE0B3; /* لون خلفية برتقالي فاتح */
+            color: #333;
+            padding: 60px 20px;
+            text-align: center;
+            margin-left: 250px; /* مساحة لشريط التنقل الجانبي */
+            transition: margin-left 0.3s ease;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #FF8C00; /* اللون البرتقالي الداكن */
+        }
+
+        /* أقسام المحتوى */
+        .container {
+            margin-left: 250px; /* مساحة لشريط التنقل الجانبي */
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #FF8C00; /* لون برتقالي داكن */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* تحسين التوافق مع الأجهزة المختلفة */
+        @media(max-width: 768px) {
+            header h1 {
+                font-size: 30px;
+            }
+
+            .container {
+                margin-left: 0; /* إزالة المساحة عند الشاشات الصغيرة */
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            header {
+                margin-left: 0; /* إزالة المساحة عند الشاشات الصغيرة */
+            }
+        }
+
+        @media(max-width: 480px) {
+            .sidebar {
+                width: 180px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .openbtn {
+                left: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- زر فتح الشريط الجانبي -->
+    <button class="openbtn" onclick="toggleNav()">☰</button>
+
+    <!-- شريط التنقل الجانبي -->
+    <div class="sidebar" id="mySidebar">
+        <a href="mkander.html">صفحة الرئسية</a>
+    
+    </div>
+
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="container">
+            <h1>مرحبا، أنا مطور تطبيقات أندرويد</h1>
+            <p>نحن هنا لنقدم أفضل الخدمات لك.</p>
+        </div>
+    </header>
+
+    <!-- أقسام المحتوى -->
+    <div class="container">
+        <div class="content" id="about">
+            <p>اسمي [اسمك هنا]، وأعمل كمطور تطبيقات أندرويد بخبرة تزيد عن [عدد السنوات] سنوات. أنا متخصص في تطوير تطبيقات أندرويد باستخدام لغات البرمجة مثل Java و Kotlin. أحب العمل على مشاريع تساهم في تحسين تجربة المستخدم وتقديم حلول مبتكرة.</p>
+        </div>
+        <div class="content" id="skills" style="margin-top: 20px;">
+            <p>أمتلك خبرة في تطوير تطبيقات متنوعة تتضمن التطبيقات التجارية، الألعاب، وتطبيقات الإنتاجية. أعمل على تصميم تطبيقات تتميز بالسرعة والكفاءة، مع التركيز على تجربة المستخدم السلسة والتصميم الجذاب.</p>
+        </div>
+        <div class="content" id="contact" style="margin-top: 20px;">
+            <p>أنا متحمس دائماً لتعلم التقنيات الجديدة والتطوير المستمر في مجال البرمجة، وأسعى للمشاركة في مشاريع ملهمة تساهم في تحقيق تغيير إيجابي.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript لتبديل الشريط الجانبي -->
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var container = document.querySelector(".container");
+            
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px";
+                container.style.marginLeft = "0";
+            } else {
+                sidebar.style.left = "0px";
+                container.style.marginLeft = "250px";
+            }
+        }
+    </script>
+
+</body>
+</html>

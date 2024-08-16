@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiskDigger تحميل تطبيق استرجاع الصور المحذوفة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f3e5f5; /* لون الخلفية البنفسجي الفاتح */
+            color: #4a148c; /* لون النص البنفسجي الداكن */
+        }
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 15px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 1;
+            background: #4a148c; /* لون زر القائمة الجانبية */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #6a1b9a; /* لون الخلفية الجانبية */
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 1;
+        }
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #8e24aa; /* لون عند التحويم فوق الروابط الجانبية */
+        }
+        .sidebar.show {
+            left: 0;
+        }
+        .content {
+            margin-left: 0;
+            transition: margin-left 0.3s;
+            padding: 20px;
+            background-color: #f3e5f5; /* لون الخلفية الأساسية */
+        }
+        .content.shift {
+            margin-left: 250px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        footer {
+            background-color: #4a148c; /* لون خلفية الفوتر */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        button {
+            background-color: #8e24aa; /* لون خلفية الزر */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #6a1b9a; /* لون الزر عند التحويم */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-btn" onclick="toggleSidebar()">&#x22EE;</div>
+    <div class="sidebar" id="sidebar">
+        <a href="mkander.html">صفحة الرئسية لموقعي</a>
+        <a href="عنا.html">عنا</a>
+    </div>
+    <div class="content" id="content">
+        <h1>trbou ff مسرع لعبة فري فاير</h1>
+        <h4>trbou ff تطبيق يسرع لعبة فري فاير بانه يزيد عدد الفريمات في اللعبة وازالة الاق في اللعبة </h4> 
+        <img src="https://www.raed.net/img?id=945040/img" alt="وصف_الصورة" style="width: 300px; height: 200px;">
+
+        <a href="https://www.mediafire.com/file/whzh8jbzfez004u/turbo+ff_1.0.apk/file" download>
+            <button>تحميل التطبيق</button>
+        </a>
+
+        <!-- أقسام إضافية لزيادة طول الصفحة -->
+        <div class="section">
+            <h2>قسم 1</h2>
+            <p>هذا قسم إضافي لزيادة طول الصفحة. يمكنك وضع أي محتوى تريده هنا مثل نصوص أو صور أو حتى قوائم.</p>
+        </div>
+        <div class="section">
+            <h2>قسم 2</h2>
+            <p>هذا قسم آخر لزيادة طول الصفحة. يمكنك تعديل المحتوى أو إضافة المزيد من الأقسام كما تحتاج.</p>
+        </div>
+        <div class="section">
+            <h2>قسم 3</h2>
+            <p>مزيد من المحتوى لزيادة الطول. كرر أو عدل حسب الحاجة.</p>
+        </div>
+        <div class="section">
+            <h2>قسم 4</h2>
+            <p>إضافة محتوى إضافي لزيادة الطول الكلي للصفحة.</p>
+        </div>
+    </div>
+
+    <script>
+        var sidebar = document.getElementById('sidebar');
+        var content = document.getElementById('content');
+        var isSidebarOpen = false;
+        var xStart = null;
+        var threshold = 50; // مسافة السحب لتفعيل الشريط الجانبي
+
+        function toggleSidebar() {
+            if (isSidebarOpen) {
+                sidebar.classList.remove('show');
+                content.classList.remove('shift');
+                isSidebarOpen = false;
+            } else {
+                sidebar.classList.add('show');
+                content.classList.add('shift');
+                isSidebarOpen = true;
+            }
+        }
+
+        document.addEventListener('touchstart', function(event) {
+            xStart = event.touches[0].clientX;
+        }, false);
+
+        document.addEventListener('touchend', function(event) {
+            if (xStart === null) return;
+
+            var xEnd = event.changedTouches[0].clientX;
+            var distance = xEnd - xStart;
+
+            if (xStart < 50 && distance > threshold) {
+                // سحب من اليسار لفتح الشريط الجانبي
+                if (!isSidebarOpen) {
+                    toggleSidebar();
+                }
+            } else if (isSidebarOpen && distance < -threshold) {
+                // سحب من اليمين لإغلاق الشريط الجانبي
+                toggleSidebar();
+            }
+
+            xStart = null;
+        }, false);
+    </script>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; Mkander 2024</p>
+    </footer>
+</body>
+</html>
